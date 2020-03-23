@@ -4,7 +4,7 @@ Arcadia Finance Application
 
 ![picture](https://gitlab.com/arcadia-application/main-app/-/raw/master/Micro%20Services%20architecture.png)
 
-Credentials are admin/iloveblue (will be changed soon - issue opened)
+Credentials are admin/ilovef5
 
 //////////////////////
 
@@ -23,7 +23,6 @@ docker network create internal
 docker run -dit -h mainapp --name=mainapp --net=internal registry.gitlab.com/arcadia-application/main-app/mainapp:latest
 
 //////////////////////
-
 
 docker run -dit -h backend --name=backend --net=internal registry.gitlab.com/arcadia-application/back-end/backend:latest
 
