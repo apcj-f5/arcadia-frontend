@@ -16,15 +16,20 @@ spec:
   selector:
     app: backend
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  namespace: default
   labels:
     app: backend
     version: v1
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+      version: v1
   template:
     metadata:
       labels:
@@ -32,9 +37,12 @@ spec:
         version: v1
     spec:
       containers:
-      - name: backend
+      - env:
+        - name: service_name
+          value: backend
         image: registry.gitlab.com/arcadia-application/back-end/backend:latest
         imagePullPolicy: IfNotPresent
+        name: backend
         ports:
         - containerPort: 80
           protocol: TCP
@@ -58,15 +66,20 @@ spec:
   selector:
     app: app2
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app2
+  namespace: default
   labels:
     app: app2
     version: v1
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: app2
+      version: v1
   template:
     metadata:
       labels:
@@ -74,9 +87,12 @@ spec:
         version: v1
     spec:
       containers:
-      - name: app2
+      - env:
+        - name: service_name
+          value: app2
         image: registry.gitlab.com/arcadia-application/app2/app2:latest
         imagePullPolicy: IfNotPresent
+        name: app2
         ports:
         - containerPort: 80
           protocol: TCP
