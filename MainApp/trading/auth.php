@@ -15,7 +15,7 @@
 //	echo '{"auth":"success"}';
 //	exit();
 	
-	if ($user!="admin" || $pass!="iloveblue")
+	if ($user!="admin" || $pass!="ilovef5")
 	{
 		if (isset($_SESSION['error_count']))
 		{
