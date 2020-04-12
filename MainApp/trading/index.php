@@ -254,19 +254,19 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
               <div class="logged-user-w">
                 <div class="logged-user-i">
                   <div class="avatar-w">
-                    <img alt="" src="img/Phillipe.jpg">
+                    <img alt="" src="img/Matthieu.jpg">
                   </div>
                   <div class="logged-user-menu color-style-bright">
                     <div class="logged-user-avatar-info">
                       <div class="avatar-w">
-                        <img alt="" src="img/Phillipe.jpg">
+                        <img alt="" src="img/Matthieu.jpg">
                       </div>
                       <div class="logged-user-info-w">
                         <div class="logged-user-name">
-                          Phillipe Cloup
+                          Matthieu Dierick
                         </div>
                         <div class="logged-user-role">
-                          Administrator
+                          Bank customer
                         </div>
                       </div>
                     </div>
