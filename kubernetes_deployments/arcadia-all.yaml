@@ -58,6 +58,7 @@ metadata:
   namespace: default
   labels:
     app: main
+    service: main
 spec:
   type: NodePort
   ports:
