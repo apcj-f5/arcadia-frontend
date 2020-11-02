@@ -1,9 +1,13 @@
 <?php
+session_start();
+session_regenerate_id(true); 
+
 $error=0;
 if (isset($_SESSION['error']) && ($_SESSION['error'] == 1))
 {
 	$error=1;
 }
+
 
 if ($error==1) 
 {
