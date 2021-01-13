@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-LABEL MAINTAINER Matthieu Dierick <m.dierick@f5.com>
+LABEL MAINTAINER Matthieu Dierick <m.dierick@f5.com> 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install apache, PHP, and supplimentary programs. openssh-server, curl, and lynx-cur are for debugging the container.
