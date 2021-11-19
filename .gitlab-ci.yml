@@ -4,7 +4,7 @@ services:
   - docker:19.03.1-dind
 
 before_script:
-  - docker login registry.gitlab.com -u MattDierick -p $matt_token
+  - docker login registry.gitlab.com -u $reg_user -p $reg_token
 
 build:
   stage: build
