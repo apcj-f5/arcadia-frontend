@@ -23,6 +23,16 @@ function authenticate() {
 						$url = $protocol.$backend.'/files/stock_transactions.json';
 						$ch = curl_init($url);
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+						if (isset($_SERVER['HTTP_X_MESH_REQUEST_ID'])) {
+							$random_spanid = bin2hex( random_bytes(8) );
+							curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+								"X-Mesh-Request-ID: " . $_SERVER['HTTP_X_MESH_REQUEST_ID'],
+								"X-B3-TraceId: " . $_SERVER['HTTP_X_B3_TRACEID'],
+								"X-B3-SpanId: " . $random_spanid,
+								"X-B3-ParentSpanId: " . $_SERVER['HTTP_X_B3_SPANID'],
+								"X-B3-Sampled: " . $_SERVER['HTTP_X_B3_SAMPLED']
+							));
+						}
 						$stock_transactions_result = curl_exec($ch);
 						$stock_tranfer_list = json_decode($stock_transactions_result, true);
 						$i = 0;
