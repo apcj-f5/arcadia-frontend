@@ -21,7 +21,18 @@
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); 
+	if (isset($_SERVER['HTTP_X_MESH_REQUEST_ID'])) {
+		$random_spanid = bin2hex( random_bytes(8) );
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			"X-Mesh-Request-ID: " . $_SERVER['HTTP_X_MESH_REQUEST_ID'],
+			"X-B3-TraceId: " . $_SERVER['HTTP_X_B3_TRACEID'],
+			"X-B3-SpanId: " . $random_spanid,
+			"X-B3-ParentSpanId: " . $_SERVER['HTTP_X_B3_SPANID'],
+			"X-B3-Sampled: " . $_SERVER['HTTP_X_B3_SAMPLED']
+		));
+	} else {
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+	}
 	$result = curl_exec($ch);
 	$info = curl_getinfo($ch);
 	curl_close($ch);
