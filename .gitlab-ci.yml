@@ -4,10 +4,10 @@ services:
   - docker:19.03.1-dind
 
 before_script:
-  - docker login registry.gitlab.com -u MattDierick -p $matt_token
+  - docker login registry.gitlab.com -u $reg_user -p $reg_token
 
 build:
   stage: build
   script:
-    - docker build -t registry.gitlab.com/arcadia-application/main-app/mainapp:latest .
-    - docker push registry.gitlab.com/arcadia-application/main-app/mainapp:latest
+    - docker build -t registry.gitlab.com/$reg_org/main-app/mainapp:latest .
+    - docker push registry.gitlab.com/$reg_org/main-app/mainapp:latest

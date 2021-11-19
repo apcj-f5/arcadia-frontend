@@ -21,6 +21,17 @@ else
 		$url = $protocol.$domainName.'/files/stocks.json';
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		if (isset($_SERVER['HTTP_X_MESH_REQUEST_ID'])) {
+			$random_spanid = bin2hex( random_bytes(8) );
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+				"X-Mesh-Request-ID: " . $_SERVER['HTTP_X_MESH_REQUEST_ID'],
+				"X-B3-TraceId: " . $_SERVER['HTTP_X_B3_TRACEID'],
+				"X-B3-SpanId: " . $random_spanid,
+				"X-B3-ParentSpanId: " . $_SERVER['HTTP_X_B3_SPANID'],
+				"X-B3-Sampled: " . $_SERVER['HTTP_X_B3_SAMPLED'],
+				'Content-Type: application/json'
+			));
+		} 
 		$stocks_result = curl_exec($ch);
 		$stocks = json_decode($stocks_result, true);
 
@@ -28,6 +39,17 @@ else
 		$url = $protocol.$domainName.'/files/stock_price.json';
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		if (isset($_SERVER['HTTP_X_MESH_REQUEST_ID'])) {
+			$random_spanid = bin2hex( random_bytes(8) );
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+				"X-Mesh-Request-ID: " . $_SERVER['HTTP_X_MESH_REQUEST_ID'],
+				"X-B3-TraceId: " . $_SERVER['HTTP_X_B3_TRACEID'],
+				"X-B3-SpanId: " . $random_spanid,
+				"X-B3-ParentSpanId: " . $_SERVER['HTTP_X_B3_SPANID'],
+				"X-B3-Sampled: " . $_SERVER['HTTP_X_B3_SAMPLED'],
+				'Content-Type: application/json'
+			));
+		}
 		$stock_price_result = curl_exec($ch);
 		$stock_price = json_decode($stock_price_result, true);
 
